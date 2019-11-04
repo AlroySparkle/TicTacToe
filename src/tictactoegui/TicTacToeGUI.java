@@ -125,7 +125,7 @@ public class TicTacToeGUI extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Turn:Player1");
+        jLabel1.setText("Turn:X");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,7 +141,7 @@ public class TicTacToeGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(a3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -185,6 +185,11 @@ public class TicTacToeGUI extends javax.swing.JFrame {
         jMenu1.setText("Menu");
 
         jMenuItem2.setText("New game");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Load game");
@@ -227,6 +232,7 @@ public class TicTacToeGUI extends javax.swing.JFrame {
         play(2,0);
         c1.setText(""+turn);
         ChangePlayer();
+        c1.setEnabled(false);
         check();
     }//GEN-LAST:event_c1ActionPerformed
 
@@ -234,6 +240,7 @@ public class TicTacToeGUI extends javax.swing.JFrame {
         play(0,0);
         a1.setText(""+turn);
         ChangePlayer();
+        a1.setEnabled(false);
         check();
     }//GEN-LAST:event_a1ActionPerformed
 
@@ -241,6 +248,7 @@ public class TicTacToeGUI extends javax.swing.JFrame {
         play(0,1);
         a2.setText(""+turn);
         ChangePlayer();
+        a2.setEnabled(false);
         check();
     }//GEN-LAST:event_a2ActionPerformed
 
@@ -248,6 +256,7 @@ public class TicTacToeGUI extends javax.swing.JFrame {
         play(0,2);
         a3.setText(""+turn);
         ChangePlayer();
+        a3.setEnabled(false);
         check();
     }//GEN-LAST:event_a3ActionPerformed
 
@@ -255,6 +264,7 @@ public class TicTacToeGUI extends javax.swing.JFrame {
         play(1,0);
         b1.setText(""+turn);
         ChangePlayer();
+        b1.setEnabled(false);
         check();
     }//GEN-LAST:event_b1ActionPerformed
 
@@ -262,6 +272,7 @@ public class TicTacToeGUI extends javax.swing.JFrame {
         play(1,1);
         b2.setText(""+turn);
         ChangePlayer();
+        b2.setEnabled(false);
         check();
     }//GEN-LAST:event_b2ActionPerformed
 
@@ -269,6 +280,7 @@ public class TicTacToeGUI extends javax.swing.JFrame {
         play(1,2);
         b3.setText(""+turn);
         ChangePlayer();
+        b3.setEnabled(false);
         check();
     }//GEN-LAST:event_b3ActionPerformed
 
@@ -276,6 +288,7 @@ public class TicTacToeGUI extends javax.swing.JFrame {
         play(2,1);
         c2.setText(""+turn);
         ChangePlayer();
+        c2.setEnabled(false);
         check();
     }//GEN-LAST:event_c2ActionPerformed
 
@@ -283,8 +296,40 @@ public class TicTacToeGUI extends javax.swing.JFrame {
         play(2,2);
         c3.setText(""+turn);
         ChangePlayer();
+        c3.setEnabled(false);
         check();
     }//GEN-LAST:event_c3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        reEstablish();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    
+    //remake the game at all
+    private void reEstablish(){
+        game.newGame();
+        //re enable all buttons and clear text
+        a1.setText("");
+        a1.setEnabled(true);
+        a2.setText("");
+        a2.setEnabled(true);
+        a3.setText("");
+        a3.setEnabled(true);
+        b1.setText("");
+        b1.setEnabled(true);
+        b2.setText("");
+        b2.setEnabled(true);
+        b3.setText("");
+        b3.setEnabled(true);
+        c1.setText("");
+        c1.setEnabled(true);
+        c2.setText("");
+        c2.setEnabled(true);
+        c3.setText("");
+        c3.setEnabled(true);
+        turn='X'; //let x play first
+        player=0; //let player 1 play first
+        jLabel1.setText("Turn:X");
+    }
     
     //swap turn
     private void ChangePlayer(){
@@ -307,7 +352,7 @@ public class TicTacToeGUI extends javax.swing.JFrame {
     //see if any player won
     private void check(){
         if(game.isWin())
-            System.exit(0);
+            reEstablish();
     }
     
     
